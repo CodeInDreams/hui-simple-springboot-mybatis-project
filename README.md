@@ -29,11 +29,11 @@ Visit http://localhost/swagger-ui.html for more information.
 
 | API Name | URL |
 | --- | --- |
-| GetUsers | [http://localhost/user] [PlDb] |
-| InsertUser | [http://localhost/user] [PlDb] |
-| DeleteUser | [http://localhost/user/{id}] [PlDb] |
-| GetUserById | [http://localhost/user/{id}] [PlDb] |
-| UpdateUser | [http://localhost/user/{id}] [PlDb] |
+| GetUsers | http://localhost/user |
+| InsertUser | http://localhost/user |
+| DeleteUser |  http://localhost/user/{id} |
+| GetUserById | http://localhost/user/{id} |
+| UpdateUser | http://localhost/user/{id} |
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 

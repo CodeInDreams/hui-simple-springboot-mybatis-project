@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="60">
+    <Properties>
+        <Property name="log-path">log</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console-Appender" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{-10} - %msg%n
+                </pattern>>
+            </PatternLayout>
+        </Console>
+        <File name="Service-File-Appender" fileName="${log-path}/service_info.log" >
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+        <File name="Error-File-Appender" fileName="${log-path}/error.log" >
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{-10} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+        <File name="Mybatis-File-Appender" fileName="${log-path}/mybatis_debug.log" >
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console-Appender"/>
+            <AppenderRef ref="Error-File-Appender"/>
+        </Root>
+        <Logger name="com.example.demo.service" level="info" additivity="true">
+            <AppenderRef ref="Service-File-Appender"/>
+        </Logger>
+        <Logger name="com.example.demo.mapper" level="debug" additivity="true">
+            <AppenderRef ref="Mybatis-File-Appender"/>
+        </Logger>
+    </Loggers>
+</Configuration>
