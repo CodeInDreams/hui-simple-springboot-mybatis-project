@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -18,7 +16,6 @@ import javax.sql.DataSource;
 @MapperScan("com.example.demo.mapper")
 @SpringBootApplication
 public class Test3Application {
-	private static Logger logger = LogManager.getLogger(Test3Application.class);
 
 	@Bean
 	@ConfigurationProperties(prefix = "spring.datasource")

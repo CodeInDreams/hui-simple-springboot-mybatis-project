@@ -3,18 +3,14 @@ package com.example.demo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,10 +23,24 @@ import java.util.Set;
 public class SwaggerConfig {
 
     @Bean
+    public UiConfiguration uiConfig() {
+        return new UiConfiguration(
+                "validatorUrl",// url
+                "list",       // docExpansion          => none | list
+                "alpha",      // apiSorter             => alpha
+                "schema",     // defaultModelRendering => schema
+                UiConfiguration.Constants.DEFAULT_SUBMIT_METHODS,
+                true,         // enableJsonEditor      => true | false
+                true,        // showRequestHeaders    => true | false
+                null
+        );
+    }
+
+    @Bean
     public Docket userAPI() {
-        Set<String> setProtocol = new HashSet<String>();
+        Set<String> setProtocol = new HashSet<>();
         setProtocol.add("http");
-        Set<String> setProduce = new HashSet<String>();
+        Set<String> setProduce = new HashSet<>();
         setProduce.add("application/json");
 
         return new Docket(DocumentationType.SWAGGER_2)

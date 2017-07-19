@@ -1,13 +1,14 @@
 package com.example.demo.service;
 
-import com.example.demo.Test3Application;
+import com.example.demo.entity.Message;
 import com.example.demo.entity.User;
-import com.example.demo.input.InsertUserInput;
 import com.example.demo.mapper.UserMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.List;
 
@@ -17,18 +18,23 @@ import java.util.List;
 @Service()
 public class UserService implements IUserService {
 
-    private static Logger logger = LogManager.getLogger(Test3Application.class);
+    private static Logger logger = LogManager.getLogger(UserService.class);
     @Autowired private UserMapper userMapper;
 
+    @Transactional
     public boolean insertUser(User user) {
-        int result = -1;
+        String msg = "User created successfully with name " + user.getName() + " and password " + user.getPassword() + ".";
+        Message message = new Message(msg);
         try {
-            result = userMapper.insertUser(user);
-        } finally {
-            logger.info("Insert user " + (result > 0 ? "succeed" : "failed") + " with name " + user.getName()
-                    + " and password " + user.getPassword() + ".");
-            return result > 0;
+            userMapper.insertUser(user);
+            userMapper.insertMessage(message);
+        } catch (Throwable e){
+            logger.info("Create user failed with name " + user.getName() + " and password " + user.getPassword() + ".");
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            return false;
         }
+        logger.info(msg);
+        return true;
     }
 
     public List<User> getUsers() {
@@ -38,32 +44,47 @@ public class UserService implements IUserService {
     public User getUserById(Long id) {
         User user = userMapper.getUserById(id);
         if(user == null)
-            throw new com.example.demo.service.NotFoundException();
+            throw new NotFoundException();
         return user;
     }
 
+    @Transactional
     public boolean updateUser(Long id, User user){
-        int result = -1;
+        String msg = "User " + id + " updated successfully with name " + user.getName() + " and password " + user.getPassword() + ".";
+        Message message = new Message(msg);
         try {
-            result = userMapper.updateUser(id, user);
-            if (result <= 0)
-                throw new com.example.demo.service.NotFoundException();
-        } finally {
-            logger.info("Update user " + id + (result > 0 ? "succeed" : "failed") + " with name " + user.getName()
-                    + " and password " + user.getPassword() + ".");
-            return result > 0;
+            if (userMapper.updateUser(id, user) > 0)
+                userMapper.insertMessage(message);
+            else
+                throw new NotFoundException();
+        } catch (Throwable e){
+            logger.info("Update user " + id + " failed with name " + user.getName() + " and password " + user.getPassword() + ".");
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            if (e instanceof NotFoundException)
+                throw e;
+            return false;
         }
+        logger.info(msg);
+        return true;
     }
 
+    @Transactional
     public boolean deleteUser(Long id){
-        int result = -1;
+        String msg = "User " + id + " deleted successfully.";
+        Message message = new Message(msg);
         try {
-            result = userMapper.deleteUser(id);
-            if (result <= 0)
-                throw new com.example.demo.service.NotFoundException();
-        } finally {
-            logger.info("Delete user " + id + (result > 0 ? "succeed" : "failed") + ".");
-            return result > 0;
+            if (userMapper.deleteUser(id) > 0)
+                userMapper.insertMessage(message);
+            else
+                throw new NotFoundException();
+        } catch (Throwable e){
+            logger.info("Delete user " + id + " failed.");
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            if (e instanceof NotFoundException)
+                throw e;
+            return false;
         }
+        logger.info(msg);
+        return true;
     }
 }

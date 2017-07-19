@@ -1,5 +1,6 @@
 package com.example.demo.mapper;
 
+import com.example.demo.entity.Message;
 import com.example.demo.entity.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
@@ -17,10 +18,12 @@ public interface UserMapper {
     User getUserById(@Param("id") Long id);
     @Select("select * from user")
     List<User> getUsers();
-    @Insert("insert into user (name, password) values (#{user.getName()}, #{user.getPassword()})")
+    @Insert("insert into user (name, password) values (#{user.name}, #{user.password})")
     int insertUser (@Param("user") User user);
     @Delete("delete from user where id = #{id}")
     int deleteUser (@Param("id") Long id);
-    @Update("update user set name = #{user.getName()}, password = #{user.getPassword()} where id = #{id}")
+    @Update("update user set name = #{user.name}, password = #{user.password} where id = #{id}")
     int updateUser(@Param("id") Long id, @Param("user") User user);
+    @Insert("insert into message (msg) values (#{message.msg})")
+    int insertMessage (@Param("message") Message message);
 }

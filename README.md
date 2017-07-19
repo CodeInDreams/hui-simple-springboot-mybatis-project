@@ -1,53 +1,39 @@
-# This is a project working with Spring Boot, MyBatis, Intellij IDEA and RESTful API.
+# This is a project working with Intellij IDEA, Spring Boot, MyBatis, Swagger2, Log4j2, Junit and RESTful API.
 --------------------------------------------------------------------------------------
-## Deploy
+## Deployment
   - Create database using the sql below:
     ```
     DROP DATABASE IF EXISTS `test`;
     CREATE DATABASE test;
     USE test
     CREATE TABLE `user` (
-      `id` bigint(16) AUTO_INCREMENT NOT NULL,
-      `name` varchar(255) DEFAULT NULL,
-      `password` varchar(255) DEFAULT NULL,
-      PRIMARY KEY (`id`)
+        `id` bigint(16) AUTO_INCREMENT NOT NULL,
+        `name` varchar(255) DEFAULT NULL,
+        `password` varchar(255) DEFAULT NULL,
+        PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    CREATE TABLE `message` (
+        `id` bigint(16) AUTO_INCREMENT NOT NULL,
+        `create_time` timestamp DEFAULT CURRENT_TIMESTAMP,
+        `msg` varchar(255),
+        PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     ```
-  - Open the project In Intellij IDEA and change mysql setting by editing application.properties.
+  - Open the project In Intellij IDEA and change mysql settings and tomcat port by editing application.properties.
   - Run the application.
+  - Open http://localhost/swagger-ui.html (default settings).
 
-## Test
+## API List
 
-##### GetUsers
-| URL | [http://localhost/users/] [PlDb] |
-|---|---|
-| Method | GET |
-| Param | null |
-| Response | List<User> |
-##### GetUserById
-| URL | [http://localhost/users/{id}] [PlDb] |
-|---|---|
-| Method | GET |
-| Param | null |
-| Response | User |
-##### InsertUser 
-| URL | [http://localhost/users] [PlDb] |
-|---|---|
-| Method | POST |
-| Param | String name, String password |
-| Response | boolean |
-##### UpdateUser 
-| URL | [http://localhost/users/{id}] [PlDb] |
-|---|---|
-| Method | PUT |
-| Param | String name, String password |
-| Response | boolean |
-##### DeleteUser
-| URL | [http://localhost/users/{id}] [PlDb] |
-|---|---|
-| Method | DELETE |
-| Param | null |
-| Response | boolean |
+Visit http://localhost/swagger-ui.html for more information.
+
+| API Name | URL |
+| --- | --- |
+| GetUsers | [http://localhost/user] [PlDb] |
+| InsertUser | [http://localhost/user] [PlDb] |
+| DeleteUser | [http://localhost/user/{id}] [PlDb] |
+| GetUserById | [http://localhost/user/{id}] [PlDb] |
+| UpdateUser | [http://localhost/user/{id}] [PlDb] |
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
