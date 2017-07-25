@@ -19,8 +19,12 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "User")
 public class UserController {
 
+    private final IUserService userService;
+
     @Autowired
-    private IUserService userService;
+    public UserController(IUserService userService) {
+        this.userService = userService;
+    }
 
     @ApiOperation(value="Get All Users")
     @RequestMapping(method=RequestMethod.GET)

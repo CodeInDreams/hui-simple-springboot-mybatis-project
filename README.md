@@ -1,24 +1,25 @@
-# This is a project working with Intellij IDEA, Spring Boot, MyBatis, Swagger2, Log4j2, Junit and RESTful API.
+# This is a project working with Intellij IDEA, Spring Boot, MyBatis, Swagger2, Log4j2, Junit, Redis, Mockito and RESTful API.
 --------------------------------------------------------------------------------------
 ## Deployment
   - Create database using the sql below:
     ```
     DROP DATABASE IF EXISTS `test`;
     CREATE DATABASE test;
-    USE test
+    USE test;
     CREATE TABLE `user` (
         `id` bigint(16) AUTO_INCREMENT NOT NULL,
-        `name` varchar(255) DEFAULT NULL,
-        `password` varchar(255) DEFAULT NULL,
+        `name` varchar(255) NOT NULL,
+        `password` varchar(255) NOT NULL,
         PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     CREATE TABLE `message` (
         `id` bigint(16) AUTO_INCREMENT NOT NULL,
         `create_time` timestamp DEFAULT CURRENT_TIMESTAMP,
-        `msg` varchar(255),
+        `msg` varchar(255) NOT NULL,
         PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     ```
+  - Deploy Redis Server on localhost:6379.
   - Open the project In Intellij IDEA and change mysql settings and tomcat port by editing application.properties.
   - Run the application.
   - Open http://localhost/swagger-ui.html (default settings).
@@ -31,7 +32,7 @@ Visit http://localhost/swagger-ui.html for more information.
 | --- | --- |
 | GetUsers | http://localhost/user |
 | InsertUser | http://localhost/user |
-| DeleteUser |  http://localhost/user/{id} |
+| DeleteUser | http://localhost/user/{id} |
 | GetUserById | http://localhost/user/{id} |
 | UpdateUser | http://localhost/user/{id} |
 

@@ -38,4 +38,13 @@ public class Message {
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", msg='" + msg + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

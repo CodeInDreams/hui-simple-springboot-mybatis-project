@@ -19,6 +19,7 @@ public interface UserMapper {
     @Select("select * from user")
     List<User> getUsers();
     @Insert("insert into user (name, password) values (#{user.name}, #{user.password})")
+    @Options(useGeneratedKeys=true, keyProperty = "user.id")
     int insertUser (@Param("user") User user);
     @Delete("delete from user where id = #{id}")
     int deleteUser (@Param("id") Long id);

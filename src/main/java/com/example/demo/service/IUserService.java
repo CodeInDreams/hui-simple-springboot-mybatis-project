@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Component
 public interface IUserService {
-    boolean insertUser(User user);
+    Long insertUser(User user);
     List<User> getUsers();
     User getUserById(Long id);
     boolean updateUser(Long id, User user);

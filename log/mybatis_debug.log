@@ -1,6 +1,0 @@
-[DEBUG] 2017-07-19 09:21:38.379 [http-nio-80-exec-9] getUserById - ==>  Preparing: select * from user where id = ? 
-[DEBUG] 2017-07-19 09:21:38.398 [http-nio-80-exec-9] getUserById - ==> Parameters: 1(Long)
-[DEBUG] 2017-07-19 09:21:38.413 [http-nio-80-exec-9] getUserById - <==      Total: 1
-[DEBUG] 2017-07-19 09:21:48.843 [http-nio-80-exec-2] getUsers - ==>  Preparing: select * from user 
-[DEBUG] 2017-07-19 09:21:48.844 [http-nio-80-exec-2] getUsers - ==> Parameters: 
-[DEBUG] 2017-07-19 09:21:48.847 [http-nio-80-exec-2] getUsers - <==      Total: 9

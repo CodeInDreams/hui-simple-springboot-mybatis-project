@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
 import javax.sql.DataSource;
 
 @EnableAutoConfiguration
@@ -15,7 +16,7 @@ import javax.sql.DataSource;
 @ComponentScan(value="com.example.demo")
 @MapperScan("com.example.demo.mapper")
 @SpringBootApplication
-public class Test3Application {
+public class Application {
 
 	@Bean
 	@ConfigurationProperties(prefix = "spring.datasource")
@@ -24,7 +25,7 @@ public class Test3Application {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(Test3Application.class, args);
+        SpringApplication.run(Application.class, args);
 	}
 
 }

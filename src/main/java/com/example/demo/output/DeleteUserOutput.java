@@ -9,7 +9,11 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class DeleteUserOutput {
     @ApiModelProperty(value = "Success or not", required = true)
-    public boolean success = true;
+    private boolean success = false;
+
+    public boolean isSuccess() {
+        return success;
+    }
 
     public DeleteUserOutput(boolean success) {
         this.success = success;

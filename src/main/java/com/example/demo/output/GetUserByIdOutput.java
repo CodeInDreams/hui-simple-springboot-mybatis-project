@@ -11,17 +11,36 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class GetUserByIdOutput {
     @ApiModelProperty(value = "User id", required = true)
-    public Long id;
+    private Long id;
     @ApiModelProperty(value = "User name", required = true)
-    public String name;
+    private String name;
     @ApiModelProperty(value = "User password", required = true)
-    public String password;
+    private String password;
     @ApiModelProperty(value = "Success or not", required = true)
-    public boolean success = true;
+    private boolean success = false;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
 
     public GetUserByIdOutput(User user) {
-        this.id = user.getId();
-        this.name = user.getName();
-        this.password = user.getPassword();
+        if (user != null){
+            this.success = true;
+            this.id = user.getId();
+            this.name = user.getName();
+            this.password = user.getPassword();
+        }
     }
 }

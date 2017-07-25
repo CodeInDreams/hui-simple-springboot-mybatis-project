@@ -17,9 +17,21 @@ public class UserOutput {
     @ApiModelProperty(value = "User password", required = true)
     public String password;
 
-    public UserOutput(User user) {
+    UserOutput(User user) {
         this.id = user.getId();
         this.name = user.getName();
         this.password = user.getPassword();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

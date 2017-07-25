@@ -6,6 +6,7 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.UiConfiguration;
@@ -58,7 +59,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("hui-simple-spring-boot-mybatis-project API")
-                .contact("hui")
+                .contact(new Contact("hui", "http://172.28.4.12/600220/hui-simple-springboot-mybatis-project", "zhangyanhui@syswin.com"))
                 .version("1.0.0")
                 .build();
     }

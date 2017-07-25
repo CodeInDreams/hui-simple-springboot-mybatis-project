@@ -9,7 +9,11 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class UpdateUserOutput {
     @ApiModelProperty(value = "Success or not", required = true)
-    public boolean success = true;
+    private boolean success = false;
+
+    public boolean isSuccess() {
+        return success;
+    }
 
     public UpdateUserOutput(boolean success) {
         this.success = success;
