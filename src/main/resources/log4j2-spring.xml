@@ -52,10 +52,10 @@
         <Logger name="com.example.demo.service" level="info" additivity="true">
             <AppenderRef ref="Service-File-Appender"/>
         </Logger>
-        <Logger name="com.example.demo.mapper" level="debug" additivity="true">
+        <Logger name="com.example.demo.mapper" level="debug" additivity="false">
             <AppenderRef ref="Mybatis-File-Appender"/>
         </Logger>
-        <Logger name="com.example.demo.redis" level="debug" additivity="true">
+        <Logger name="com.example.demo.redis" level="debug" additivity="false">
             <AppenderRef ref="Redis-File-Appender"/>
         </Logger>
     </Loggers>

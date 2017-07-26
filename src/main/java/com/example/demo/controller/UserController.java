@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.annotation.BusinessInfo;
 import com.example.demo.input.InsertUserInput;
 import com.example.demo.input.UpdateUserInput;
 import com.example.demo.output.*;
@@ -7,6 +8,7 @@ import com.example.demo.service.IUserService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -33,6 +35,7 @@ public class UserController {
         return new GetUsersOutput(userService.getUsers());
     }
 
+    @BusinessInfo(name = "Get user", description = "Get user by id")
     @ApiOperation(value="Get User", notes="Get user by id")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -40,6 +43,7 @@ public class UserController {
         return new GetUserByIdOutput(userService.getUserById(id));
     }
 
+    @BusinessInfo(name = "Register user")
     @ApiOperation(value="Register User")
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
@@ -47,6 +51,7 @@ public class UserController {
         return new InsertUserOutput(userService.insertUser(user.toUser()));
     }
 
+    @BusinessInfo(name = "Update user")
     @ApiOperation(value="Update User")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     @ResponseBody
@@ -54,6 +59,7 @@ public class UserController {
         return new UpdateUserOutput(userService.updateUser(id, user.toUser()));
     }
 
+    @BusinessInfo(name = "Delete user")
     @ApiOperation(value="Delete User")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseBody

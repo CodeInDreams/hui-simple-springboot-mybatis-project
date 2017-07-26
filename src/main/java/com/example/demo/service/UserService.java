@@ -33,13 +33,13 @@ public class UserService implements IUserService {
     public Long insertUser(User user) {
         try {
             userMapper.insertUser(user);
-            String msg = "User created successfully with id " + user.getId() + ", name " + user.getName() + " and password " + user.getPassword() + ".";
+            String msg = "User created successfully with id " + user.getId() + ", name \"" + user.getName() + "\" and password \"" + user.getPassword() + "\".";
             userMapper.insertMessage(new Message(msg));
             redisUserService.put(user);
             logger.info(msg);
             return user.getId();
         } catch (Throwable e){
-            logger.error("Create user failed with name " + user.getName() + " and password " + user.getPassword() + ".");
+            logger.error("Create user failed with name \"" + user.getName() + "\" and password \"" + user.getPassword() + "\".");
             if (e instanceof ServiceException)
                 throw e;
             else
@@ -74,7 +74,7 @@ public class UserService implements IUserService {
 
     @Transactional
     public boolean updateUser(Long id, User user){
-        String msg = "User " + id + " updated successfully with name " + user.getName() + " and password " + user.getPassword() + ".";
+        String msg = "User " + id + " updated successfully with name \"" + user.getName() + "\" and password \"" + user.getPassword() + "\".";
         Message message = new Message(msg);
         try {
             if (userMapper.updateUser(id, user) > 0) {
@@ -85,7 +85,7 @@ public class UserService implements IUserService {
             else
                 throw new NotFoundException();
         } catch (Throwable e){
-            logger.error("Update user " + id + " failed with name " + user.getName() + " and password " + user.getPassword() + ".");
+            logger.error("Update user " + id + " failed with name \"" + user.getName() + "\" and password \"" + user.getPassword() + "\".");
             if (e instanceof ServiceException)
                 throw e;
             else

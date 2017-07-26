@@ -9,8 +9,10 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel
 public class InsertUserOutput {
-    @ApiModelProperty(value = "Success or not", required = true)
+
+    @ApiModelProperty(value = "Auto generated user id", required = true)
     private Long id;
+    @ApiModelProperty(value = "Success or not", required = true)
     private boolean success = false;
 
     public Long getId() {

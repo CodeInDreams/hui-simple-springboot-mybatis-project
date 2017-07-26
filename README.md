@@ -1,8 +1,8 @@
-# This is a project working with Intellij IDEA, Spring Boot, MyBatis, Swagger2, Log4j2, Junit, Redis, Mockito and RESTful API.
+# This is a project working with Intellij IDEA, Spring Boot, MyBatis, Swagger2, Log4j2, Junit, Redis, Mockito, Aspect and RESTful API.
 --------------------------------------------------------------------------------------
 ## Deployment
   - Create database using the sql below:
-    ```
+    ```mysql
     DROP DATABASE IF EXISTS `test`;
     CREATE DATABASE test;
     USE test;
@@ -19,10 +19,13 @@
         PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     ```
-  - Deploy Redis Server on localhost:6379.
+  - Deploy Redis Server on localhost:6379. Note that for persistence you need to edit you config:
+    ```bash
+    echo -e "save 900 1\nsave 300 10\nsave 60 10000\nappendonly yes" > /path/to/conf
+    ```
   - Open the project In Intellij IDEA and change mysql settings and tomcat port by editing application.properties.
   - Run the application.
-  - Open http://localhost/swagger-ui.html (default settings).
+  - Open http://localhost or http://localhost/swagger-ui.html (default settings).
 
 ## API List
 

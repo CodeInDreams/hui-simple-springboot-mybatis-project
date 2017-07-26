@@ -4,12 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>test3</artifactId>
+	<artifactId>hui-simple-springboot-mybatis-project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>test3</name>
-	<description>Demo project for Spring Boot</description>
+	<name>hui-simple-springboot-mybatis-project</name>
+	<description># This is a project working with Intellij IDEA, Spring Boot, MyBatis, Swagger2, Log4j2, Junit, Redis, Mockito and RESTful API.
+	</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -91,6 +92,10 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
             <version>1.5.4.RELEASE</version>
         </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -101,6 +106,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

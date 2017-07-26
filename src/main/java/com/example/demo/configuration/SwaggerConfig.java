@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,6 +49,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.example.demo.controller"))
                 .paths(PathSelectors.any())
                 .build()
+                .apiInfo(apiInfo())
                 .groupName("User")
                 .pathMapping("/")
                 .useDefaultResponseMessages(false)
@@ -59,7 +60,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("hui-simple-spring-boot-mybatis-project API")
-                .contact(new Contact("hui", "http://172.28.4.12/600220/hui-simple-springboot-mybatis-project", "zhangyanhui@syswin.com"))
+                .contact(new Contact("Zhang Yanhui", null, "zhangyanhui@syswin.com"))
                 .version("1.0.0")
                 .build();
     }
